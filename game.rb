@@ -255,7 +255,7 @@ gamezone.map!{|elem| elem.map!{|eleminner| eleminner=numbers.pop}} #Заполн
 
 
 #showing map
-output($i, $j, output_array)
+
 output_array = output($i, $j, output_array)
 until $i == 3 && $j == 3 do
   #where to go?
