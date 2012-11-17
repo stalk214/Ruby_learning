@@ -3,6 +3,7 @@
 #starting point
 $i = 0
 $j = 0
+output_array = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 #classes
 class Gameroom
    
@@ -109,9 +110,8 @@ end
 #global functions
 
 #Функция output выводит массив с задаваемым на входе положением X
-def output(x, y)
-
-  a = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+def output(x, y, mas)
+  a = mas
   a[x][y] = "X"
   puts "-----------------"
   a.each do |x|
@@ -123,6 +123,12 @@ def output(x, y)
   puts
   puts "-----------------"
   end
+  return a.map!{|elem| elem.map!{|eleminner| if eleminner == "X" 
+    eleminner = '#' 
+  else
+    eleminner = eleminner
+  end
+  }}
 end
 #Функция prompt выводит приглашение при ожидании ввода
 def prompt()
@@ -249,11 +255,13 @@ gamezone.map!{|elem| elem.map!{|eleminner| eleminner=numbers.pop}} #Заполн
 
 
 #showing map
-output($i, $j)
+output($i, $j, output_array)
+output_array = output($i, $j, output_array)
 until $i == 3 && $j == 3 do
   #where to go?
   input()
-  output($i, $j)
+  output_array = output($i, $j, output_array)
+  #output($i, $j)
   #g = gamezone[$i][$j]
   whattodo(gamezone[$i][$j])
 end
